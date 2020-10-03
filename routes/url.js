@@ -29,6 +29,7 @@ router.post("/shorten", jasonParser, async (req, res) => {
         res.json(url);
       } else {
         const shortUrl = baseUrl + "/" + urlCode;
+       
         url = new Url({
           longUrl,
           urlCode,
