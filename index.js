@@ -61,6 +61,6 @@ app.use("/api/url", jasonParser, require("./routes/url"));
 
 const PORT = 5000;
 
-app.listen(PORT, () => {
+app.listen(PORT || 5000, () => {
   console.log(`Server listening on port ${PORT}!`);
 });
