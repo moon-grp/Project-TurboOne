@@ -1,4 +1,4 @@
 {
     "mongoURI":"mongodb+srv://emohex:oluoluolu@cluster0.geiph.mongodb.net/<dbname>?retryWrites=true&w=majority",
-    "baseUrl":"http://localhost:5000"
+    "baseUrl":"https://shawdy.herokuapp.com/"
 }
