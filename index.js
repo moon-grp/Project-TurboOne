@@ -59,8 +59,9 @@ app.use("/api/url", jasonParser, require("./routes/url"));
   }
 }); */
 
-const PORT = 5000;
+//const PORT = 5000;
+const PORT = process.env.PORT || 3000;
 
-app.listen(PORT || 5000, () => {
+app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}!`);
 });
