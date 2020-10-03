@@ -3,11 +3,15 @@ const router = express.Router();
 const validUrl = require("valid-url");
 const shortId = require("shortid");
 const config = require("config");
+const bodyParser = require("body-parser");
+
+
+const jasonParser= bodyParser.json();
 
 const Url = require("../models/url");
 
-router.post("shorten", async (res, req) => {
-  const { longUrl } = req.body;
+router.post("/shorten", jasonParser, async (req, res) => {
+  const {longUrl}= req.body;
   const baseUrl = config.get("baseUrl");
 
   if (!validUrl.isUri(baseUrl)) {
@@ -25,8 +29,23 @@ router.post("shorten", async (res, req) => {
         res.json(url);
       } else {
         const shortUrl = baseUrl + "/" + urlCode;
+        url = new Url({
+          longUrl,
+          urlCode,
+          shortUrl,
+          date: new Date(),
+        });
+
+        await url.save();
+        res.json(url);
       }
-    } catch (err) {}
+    } catch (err) {
+      console.error(err);
+      res.status(500).json("Server Error!");
+    }
+  } else {
+    res.status(401).json("Invalid long url");
+  
   }
 });
 
