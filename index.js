@@ -5,6 +5,7 @@ const validUrl = require("valid-url");
 const shortId = require("shortid");
 const config = require("config");
 const bodyParser = require("body-parser");
+const cors = require("cors")
 
 const app = express();
 
@@ -19,12 +20,7 @@ const Url = require("./models/url");
 //app.use(bodyParser.json()); // for parsing application/json
 //app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-  res.header("Acess-Control-Allow-Headers", "Content-Type");
-  next();
-});
+app.use(cors())
 
 app.use("/", require("./routes/index"));
 app.use("/api/url", jasonParser, require("./routes/url"));
