@@ -4,13 +4,16 @@ const validUrl = require("valid-url");
 const shortId = require("shortid");
 const config = require("config");
 const bodyParser = require("body-parser");
+const cors = require("cors")
 
 
 const jasonParser= bodyParser.json();
 
 const Url = require("../models/url");
 
-router.post("/shorten", jasonParser, async (req, res) => {
+router.post("/shorten", jasonParser, cors(), async (req, res) => {
+  
+  
   const {longUrl}= req.body;
   const baseUrl = config.get("baseUrl");
 
