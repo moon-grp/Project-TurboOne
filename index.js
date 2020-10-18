@@ -22,16 +22,16 @@ const Url = require("./models/url");
 
 app.use(cors());
 
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
  res.header("Access-Control-Allow-Origin", '*');
   res.header("Access-Control-Allow-Credentials", true);
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
   next();
-});
+}); */
 
 app.use("/", require("./routes/index"));
-app.use("/api/url", jasonParser, require("./routes/url"));
+app.use("/api/url", jasonParser, cors(), require("./routes/url"));
 /*app.post("/api/url/shorten", async (req, res) => {
   const longUrl = req.body;
   const baseUrl = config.get("baseUrl");
