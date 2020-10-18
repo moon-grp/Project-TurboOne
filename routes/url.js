@@ -12,7 +12,10 @@ const jasonParser= bodyParser.json();
 const Url = require("../models/url");
 
 router.post("/shorten", jasonParser, cors(), async (req, res) => {
-  
+  req.header("Access-Control-Allow-Origin", '*');
+  req.header("Access-Control-Allow-Credentials", true);
+  req.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  req.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
   
   const {longUrl}= req.body;
   const baseUrl = config.get("baseUrl");
